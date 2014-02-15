@@ -121,4 +121,33 @@ public class FileSearchTest {
 		
 	}
 
+	
+	@Test
+	public void itSortsTheSearchResultAccordingToFileName(){
+		assertEquals(Arrays.asList(
+				new File("Beauty of Nature.pdf"),
+				new File("NaturalNumber.java"),
+				new File("NaturalNumber.java.txt"),
+				new File("nature.jpg")),
+				fileFinder.searchFile(new SearchQuery("*nat", SortOn.FILENAME)));
+		
+		assertEquals(Arrays.asList(
+				new File("bullockCart.jpg.pdf"),
+				new File("car of the year.html"),
+				new File("car.jpg"),
+				new File("car_of_the_day.html"),
+				new File("cartoon.png"),
+				new File("Encarta.pdf"),
+				new File("MyCart.java")),
+				fileFinder.searchFile(new SearchQuery("*car", SortOn.FILENAME)));
+		
+		assertEquals(Arrays.asList(
+				new File("Beauty of Nature.pdf"),
+				new File("car of the year.html"),
+				new File("car_of_the_day.html"),
+				new File("Star of the year.jpg")),
+				fileFinder.searchFile(new SearchQuery("*of", SortOn.FILENAME)));
+		
+	}
+	
 }

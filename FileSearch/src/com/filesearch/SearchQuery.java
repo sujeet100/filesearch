@@ -7,9 +7,17 @@ public class SearchQuery{
 
 	private String searchString;
 	private List<String> fileFilterExtensions;
+	private SortOn sortCriteria;
 
 	public SearchQuery(String searchString, String... fileFilterExtensions) {
 		this.searchString = searchString;
+		this.fileFilterExtensions = Arrays.asList(fileFilterExtensions);
+
+	}
+
+	public SearchQuery(String searchString, SortOn sortCriteria, String... fileFilterExtensions) {
+		this.searchString = searchString;
+		this.sortCriteria = sortCriteria;
 		this.fileFilterExtensions = Arrays.asList(fileFilterExtensions);
 
 	}
@@ -30,6 +38,8 @@ public class SearchQuery{
 		return searchString.startsWith("*");
 		
 	}
-	
 
+	public SortOn getSortCriteria() {
+		return sortCriteria;
+	}
 }

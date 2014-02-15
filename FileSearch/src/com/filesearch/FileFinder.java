@@ -1,6 +1,7 @@
 package com.filesearch;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,6 +26,19 @@ public class FileFinder {
 				filteredFilesSet.add(file);
 			}
 		}
-		return new ArrayList<File>(filteredFilesSet);
+		return  handleSorting(new ArrayList<File>(filteredFilesSet), searchQuery.getSortCriteria());
+	}
+
+
+	private ArrayList<File> handleSorting(ArrayList<File> filteredFiles, SortOn sortCriteria) {
+		
+		if(sortCriteria == null){
+			return filteredFiles;
+		}
+		
+		if(sortCriteria.equals(SortOn.FILENAME)){
+			Collections.sort(filteredFiles, new FileNameComparator());
+		}
+		return filteredFiles;
 	}
 }
