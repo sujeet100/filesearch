@@ -39,6 +39,10 @@ public class FileFinder {
 		if(sortCriteria.equals(SortOn.FILENAME)){
 			Collections.sort(filteredFiles, new FileNameComparator());
 		}
+		
+		if(sortCriteria.equals(SortOn.FILESIZE)){
+			Collections.sort(filteredFiles, new FileSizeComparator());
+		}
 		return filteredFiles;
 	}
 }

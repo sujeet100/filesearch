@@ -22,21 +22,21 @@ public class FileSearchTest {
 		
 		fileList = new ArrayList<File>() {
 			{
-				add(new File("nature.jpg"));
-				add(new File("NaturalNumber.java"));
-				add(new File("Beauty of Nature.pdf"));
-				add(new File("NaturalNumber.java.txt"));
-				add(new File("car.jpg"));
-				add(new File("cartoon.png"));
-				add(new File("MyCart.java"));
-				add(new File("Encarta.pdf"));
-				add(new File("bullockCart.jpg.pdf"));
-				add(new File("car of the year.html"));
-				add(new File("Star of the year.jpg"));
-				add(new File("car_of_the_day.html"));
-				add(new File("NN.java"));
-				add(new File("nn.class"));
-				add(new File("nn_complex_filename.c"));
+				add(new File("nature.jpg", "1024KB"));
+				add(new File("NaturalNumber.java", "1.1MB"));
+				add(new File("Beauty of Nature.pdf","2MB"));
+				add(new File("NaturalNumber.java.txt","500KB"));
+				add(new File("car.jpg","145KB"));
+				add(new File("cartoon.png", "422KB"));
+				add(new File("MyCart.java", "2.2MB"));
+				add(new File("Encarta.pdf", "10MB"));
+				add(new File("bullockCart.jpg.pdf", "122MB"));
+				add(new File("car of the year.html", "3MB"));
+				add(new File("Star of the year.jpg", "800KB"));
+				add(new File("car_of_the_day.html", "1025KB"));
+				add(new File("NN.java", "5MB"));
+				add(new File("nn.class", "6MB"));
+				add(new File("nn_complex_filename.c", "100KB"));
 				
 				
 							
@@ -150,4 +150,25 @@ public class FileSearchTest {
 		
 	}
 	
+	@Test
+	public void itSortsTheSearchResultAccordingToFileSize(){
+		assertEquals(Arrays.asList(
+				new File("NaturalNumber.java.txt"),
+				new File("nature.jpg"),
+				new File("NaturalNumber.java"),
+				new File("Beauty of Nature.pdf")),
+				fileFinder.searchFile(new SearchQuery("*nat", SortOn.FILESIZE)));
+		
+		assertEquals(Arrays.asList(
+				new File("car.jpg"),
+				new File("cartoon.png"),
+				new File("car_of_the_day.html"),
+				new File("MyCart.java"),
+				new File("car of the year.html"),
+				new File("Encarta.pdf"),
+				new File("bullockCart.jpg.pdf")),
+				fileFinder.searchFile(new SearchQuery("*car", SortOn.FILESIZE)));
+		
+		
+	}
 }

@@ -31,4 +31,21 @@ public class FileTest {
 		assertEquals(".someExt",file.getExtension());
 	}
 
+	@Test
+	public void itSetsCorrectFileSizeInKBs() {
+
+		File file = new File("myfile.txt", "1024KB");
+		assertEquals(new Float(1024),file.getFileSize());
+	}
+
+	@Test
+	public void itSetsConvertsFileSizeFromMBsToKBs() {
+
+		File file = new File("myfile.txt", "1MB");
+		assertEquals(new Float(1024),file.getFileSize());
+		
+		File file2 = new File("anotherFile.txt", "1.1MB");
+		assertEquals(new Float(1126.4),file2.getFileSize());
+	}
+
 }
