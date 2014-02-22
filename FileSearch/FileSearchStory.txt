@@ -57,7 +57,8 @@ Output: nature.jpg
 
 ======================================================================================
 story 3: 
-When filter for file extension is specified only those files having specified extension should be fetched. Multiple File filter extensions can be specified as comma separated value.
+When filter for file extension is specified only those files having specified extension should be fetched. Multiple File filter extensions can 
+be specified as comma separated value.
 When specified as *, It returns files having any extension.
 
 query: *nat, ext: .java
@@ -124,4 +125,5 @@ Search files with CamelCase search string (requires regex)
 search files with multiple occurances of * in search query (requires regex)
 Filter files according to file type (i.e. Document, Code, Music, Picture, Video etc.)
 Filter according to file size (i.e. files with size > 10KB)
-Filter according to created date/Modified date (today, yesterday, two weeks back, specified date) 
+Filter according to created date/Modified date (today, yesterday, two weeks back, specified date)
+Mass rename 
