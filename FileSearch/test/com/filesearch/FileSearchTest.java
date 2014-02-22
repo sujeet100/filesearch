@@ -17,6 +17,7 @@ public class FileSearchTest {
 	List<File> fileList;
 	FileFinder fileFinder;
 	
+	@SuppressWarnings("serial")
 	@Before
 	public void init(){
 		

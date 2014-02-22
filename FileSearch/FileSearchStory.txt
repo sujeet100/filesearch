@@ -1,4 +1,9 @@
 File search
+===========
+One of your friend screwed up youe EClipse IDE, 
+and you found that the feature to open resource/search file (ctrl+shift+R) has stopped working unexpectedly.
+So you decided to write your own code to surprise your friend.
+
 File search is a utility which takes filelist and a search string as an input and finds the matching files from the list 
 of files specified. 
 (similar to file search in eclipse (ctl+shift+R))
