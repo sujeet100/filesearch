@@ -1,0 +1,134 @@
+File search
+===========
+One of your friend screwed up youe EClipse IDE, 
+and you found that the feature to open resource/search file (ctrl+shift+R) has stopped working unexpectedly.
+So you decided to write your own code to surprise your friend.
+
+File search is a utility which takes filelist and a search string as an input and finds the matching files from the list 
+of files specified. 
+(similar to file search in eclipse (ctl+shift+R))
+
+Story 1:
+Given a list of files, It returns the matching files for simple query string
+
+Sample Input: 
+	nature.jpg
+	NaturalNumber.java
+	Beauty of Nature.pdf
+	NaturalNumber.java.txt
+	car.jpg
+	cartoon.png
+	MyCart.java
+	Encarta.pdf
+	bullockCart.jpg.pdf
+	car of the year.html
+	Star of the year.jpg
+	car_of_the_day.html
+	
+Query: nature.jpg
+Output: nature.jpg
+
+Query: nat
+Output: 
+	nature.jpg
+	NaturalNumber.java
+	NaturalNumber.java.txt
+	
+Query: Nat
+Output: 
+	nature.jpg
+	NaturalNumber.java
+	NaturalNumber.java.txt
+	
+Query: car
+Output: 
+	car.jpg
+	cartoon.png
+	car of the year.html
+
+====================================================================================
+
+Story 2: 
+i. Given a list of files it returns matching files when searched with a string prefixed with *,
+ Where * means any string
+
+query: *nat
+Output: nature.jpg
+	NaturalNumber.java
+	Beauty of Nature.pdf	
+	NaturalNumber.java.txt
+
+(NOTE: suffixing query string with star has no different effect and is same as query without * suffixed)
+
+======================================================================================
+story 3: 
+When filter for file extension is specified only those files having specified extension should be fetched. Multiple File filter extensions can 
+be specified as comma separated value.
+When specified as *, It returns files having any extension.
+
+query: *nat, ext: .java
+Output: 
+	NaturalNumber.java
+
+query: *nat, ext: .java, .jpg
+Output: 
+	nature.jpg
+	NaturalNumber.java
+
+========================================================================================
+Story 4: Sort searched files according to criteria.
+Files can be sorted on size of the file or the name of the file. File Size can be specified in KB or MB
+
+Sample Input Files:
+			"nature.jpg", "1024KB"
+			"NaturalNumber.java", "1.1MB"
+			"Beauty of Nature.pdf","2MB"
+			"NaturalNumber.java.txt","500KB"
+			"car.jpg","145KB"
+			"cartoon.png", "422KB"
+			"MyCart.java", "2.2MB"
+			"Encarta.pdf", "10MB"
+			"bullockCart.jpg.pdf", "122MB"
+			"car of the year.html", "3MB"
+			"Star of the year.jpg", "800KB"
+			"car_of_the_day.html", "1025KB"
+
+Query: *.nat, Sort: FILESIZE
+Output:
+	NaturalNumber.java.txt
+	nature.jpg
+	NaturalNumber.java
+	Beauty of Nature.pdf
+				
+Query: *car, Sort: FILESIZE
+Output: 
+				car.jpg
+				cartoon.png
+				car_of_the_day.html
+				MyCart.java
+				car of the year.html
+				Encarta.pdf
+				bullockCart.jpg.pdf"
+Query: *car, Sort: FILENAME
+Output:				bullockCart.jpg.pdf
+				car of the year.html
+				car.jpg
+				car_of_the_day.html
+				cartoon.png
+				Encarta.pdf
+				MyCart.java
+
+Query: *car, ext: .html,  Sort: FILENAME
+Output:				
+				car of the year.html
+				car_of_the_day.html
+				
+
+=========================================================================================
+Other possible stories:
+Search files with CamelCase search string (requires regex)
+search files with multiple occurances of * in search query (requires regex)
+Filter files according to file type (i.e. Document, Code, Music, Picture, Video etc.)
+Filter according to file size (i.e. files with size > 10KB)
+Filter according to created date/Modified date (today, yesterday, two weeks back, specified date)
+Mass rename 
